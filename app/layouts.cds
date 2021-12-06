@@ -133,7 +133,13 @@ annotate TravelService.Booking with @UI : {
     }
   },
   // Exercise 5: add chart header facet
-
+  HeaderFacets  : [
+      {
+          $Type : 'UI.ReferenceFacet',
+          Target : '@UI.Chart#RadialCriticalityPath',
+          Label : 'Customer VIP Status'
+      },
+  ],
   PresentationVariant : {
     Text           : 'Default',
     Visualizations : ['@UI.LineItem'],
@@ -141,6 +147,7 @@ annotate TravelService.Booking with @UI : {
   SelectionFields : [],
   LineItem                : {
   //Exercise 3.1 Add Table Line Criticality
+    ![@UI.Criticality]: criticality,
 
   $value : [
     { Value : to_Carrier.AirlinePicURL,  ![@UI.Importance] : #High},
@@ -150,7 +157,12 @@ annotate TravelService.Booking with @UI : {
         ![@UI.Importance] : #High
     },
   //  Exercise 5: add chart table column
-
+    {
+       $Type : 'UI.DataFieldForAnnotation',
+       Target : '@UI.Chart#RadialCriticalityPath',
+       Label : 'Customer VIP Status',
+       ![@UI.Importance] : #High,
+    },
     { Value : to_Customer_CustomerID, ![@UI.Importance] : #High },
     { Value : to_Carrier_AirlineID, ![@UI.Importance] : #High   },  
     { Value : ConnectionID,         ![@UI.Importance] : #High   },
@@ -202,6 +214,28 @@ annotate TravelService.BookingSupplement with @UI : {
 };
 
 // Exercise 5: Booking entity Chart annotation
+annotate TravelService.Booking with @(
+   UI: {
+      Chart #RadialCriticalityPath            : {
+          $Type             : 'UI.ChartDefinitionType',
+          Title : 'Customer VIP Status',
+          Description : 'VIP Customers are Eligible for Lounge Access',
+          ChartType         : #Donut,
+          Measures          : [BookedFlights],
+          MeasureAttributes : [{
+              $Type     : 'UI.ChartMeasureAttributeType',
+              Measure   : BookedFlights,
+              Role      : #Axis1,
+              DataPoint : '@UI.DataPoint#RadialValuePath'
+          }]
+      },
+      DataPoint #RadialValuePath              : {
+          Value       : BookedFlights,
+          TargetValue : to_Carrier.VIPCustomerBookings,
+          Criticality : EligibleForPrime
+      } 
+  }
+);
 
 
 // Exercise 6: BookedFlights entity Chart annotation

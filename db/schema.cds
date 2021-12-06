@@ -91,4 +91,11 @@ extend Airline with {
 };
 
 //Exercise 6: Using the Chart Building Block
+define view BookedFlights as select from Booking left join Airline on Airline.AirlineID = Booking.to_Carrier.AirlineID  {
+  key to_Customer.CustomerID as to_Customer_CustomerID, key AirlineID, to_Customer.LastName as LastName, BookingUUID, Name, VIPCustomerBookings, to_Travel
+};
+
+extend Travel with {
+  to_BookedFlights : Association to many BookedFlights on to_BookedFlights.to_Travel = $self @readonly;  
+};
 
