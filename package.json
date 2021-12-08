@@ -27,7 +27,7 @@
   "scripts": {
     "start": "cds run",
     "test": "jest --runInBand",
-    "watch-managetravels": "cds watch --open managetravels/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4" 
+    "watch-managetravels": "cds watch --open managetravels/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4"
   },
   "cds": {
     "requires": {
