@@ -261,7 +261,13 @@ init() {
     /**
      * Trees-for-Tickets: Set criticality
      */
-    this.after("READ", "Booking", setCriticality);  
+
+    this.after("READ", "Booking", async (results, req) => { 
+      if (results.length > 0 && "BookingUUID" in results[0]){
+        await setCriticality(results)
+      };  
+    });
+
 
     /**
      * Exercise 5: Data for Bookings table micro chart
