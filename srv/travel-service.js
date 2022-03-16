@@ -178,7 +178,7 @@ init() {
    */
    this._update_totalsGreen = async function (req) {
     const [{ TotalPrice }] = await cds.read([
-      SELECT.one`TotalPrice`.from(Travel.drafts, req.data.TravelUUID)
+      SELECT.one`TotalPrice, GreenFee`.from(Travel.drafts, req.data.TravelUUID)
     ]);
     if (req.data.GoGreen) {
       req.info({
@@ -195,7 +195,11 @@ init() {
   `);
     } else {
       this._update_totals4(req.data.TravelUUID);
-      return UPDATE(Travel.drafts, req.data.TravelUUID).with({ GreenFee: 0, TreesPlanted: 0 });
+      return UPDATE(Travel.drafts, req.data.TravelUUID).with(`
+      TotalPrice = TotalPrice - GreenFee,
+      GreenFee = 0,
+      TreesPlanted = 0
+    `);
     }
   };
 
@@ -258,11 +262,13 @@ init() {
     /**
      * Trees-for-Tickets: Set criticality
      */
-    this.after("READ", "Booking", (results, req) => { 
+
+     this.after("READ", "Booking", (results, req) => { 
       if (results.length > 0 && "BookingUUID" in results[0]){
-        setCriticality(results)
+        return setCriticality(results)
       };  
     });
+
 
     /**
      * Exercise 5: Data for Bookings table micro chart
