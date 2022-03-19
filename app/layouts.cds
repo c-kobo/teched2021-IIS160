@@ -56,13 +56,14 @@ annotate TravelService.Travel with @UI : {
     { $Type  : 'UI.DataFieldForAction', Action : 'TravelService.rejectTravel',   Label  : '{i18n>RejectTravel}'   },
     { $Type  : 'UI.DataFieldForAction', Action : 'TravelService.deductDiscount', Label  : '{i18n>DeductDiscount}' },
     { Value : TravelID               },
+      { Value : TravelStatus_code,
+          Criticality : TravelStatus.criticality      },
     { Value : to_Agency_AgencyID     },
     { Value : to_Customer_CustomerID },    
     { Value : BeginDate              },
     { Value : EndDate                },
     { Value : BookingFee             },
     { Value : TotalPrice             },
-    { Value : TravelStatus_code      },    
     { Value : Description            }
   ],
   /*
@@ -91,13 +92,15 @@ annotate TravelService.Travel with @UI : {
         ID     : 'Dates',
         Target : '@UI.FieldGroup#Dates',
         Label  : '{i18n>Dates}'
+      },
+        {
+          $Type : 'UI.ReferenceFacet',
+          Label : '{i18n>Sustainability}',
+          ID : 'i18nSustainability',
+          Target : '@UI.FieldGroup#i18nSustainability',
       }
     ]
-  }, {  // booking list
-      $Type  : 'UI.ReferenceFacet',
-      Target : 'to_Booking/@UI.LineItem',
-      Label  : '{i18n>Booking}'
-    }
+  }
   ],
   FieldGroup#GeneralData : { Data : [
     { Value : to_Customer_CustomerID },    
@@ -238,4 +241,55 @@ annotate TravelService.Booking with @(
 );
 
 
+annotate TravelService.Travel with {
+    to_Agency @Common.Text : {
+            $value : to_Agency.Name,
+            ![@UI.TextArrangement] : #TextFirst,
+        }
+};
+annotate TravelService.Travel with @(
+    UI.FieldGroup #i18nSustainability : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : GoGreen,
+            },{
+                $Type : 'UI.DataField',
+                Value : GreenFee,
+            },{
+                $Type : 'UI.DataField',
+                Value : TreesPlanted,
+            },],
+    }
+);
 // Exercise 6: BookedFlights entity Chart annotation
+annotate TravelService.BookedFlights with @(
+  UI : {
+    Chart          : {
+    $Type     : 'UI.ChartDefinitionType',
+    Title     : 'Total Bookings for Customer',
+    Description   : 'Chart Description',
+    ChartType     : #Column,
+    Measures    : [CountFlights],
+    Dimensions    : [to_Customer_CustomerID, AirlineID],
+    MeasureAttributes : [{
+      $Type : 'UI.ChartMeasureAttributeType',
+      Measure : CountFlights,
+      Role  : #Axis1
+    }],    
+    DimensionAttributes : [
+      {
+      $Type   : 'UI.ChartDimensionAttributeType',
+      Dimension : to_Customer_CustomerID,
+      Role  : #Category
+    },   
+    {
+      $Type   : 'UI.ChartDimensionAttributeType',
+      Dimension : AirlineID,
+      Role  : #Series
+    }
+    ]
+    }      
+  } 
+);

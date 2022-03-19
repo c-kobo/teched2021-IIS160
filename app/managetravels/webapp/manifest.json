@@ -53,6 +53,15 @@
                 "sap.fe.templates": {}
             }
         },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController": {
+                        "controllerName": "sap.fe.cap.managetravels.ext.ObjectPageExtension"
+                    }
+                }
+            }
+        },
         "models": {
             "@i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
@@ -123,6 +132,21 @@
                                 "to_Booking": {
                                     "detail": {
                                         "route": "BookingObjectPage"
+                                    }
+                                }
+                            },
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "CustomSection": {
+                                            "name": "sap.fe.cap.managetravels.ext.fragment.CustomSection",
+                                            "position": {
+                                                "anchor": "Travel",
+                                                "placement": "After"
+                                            },
+                                            "type": "XMLFragment",
+                                            "title": "{i18n>myItinerary}"
+                                        }
                                     }
                                 }
                             }
