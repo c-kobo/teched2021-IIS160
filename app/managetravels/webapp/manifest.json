@@ -82,13 +82,8 @@
                 },
                 {
                     "pattern": "Travel({key}):?query:",
-                    "name": "TravelObjectPage",
-                    "target": "TravelObjectPage"
-                },
-                {
-                    "pattern": "Travel({key})/to_Booking({key2}):?query:",
-                    "name": "BookingObjectPage",
-                    "target": "BookingObjectPage"
+                    "name": "CustomPageViewPage",
+                    "target": "CustomPageViewPage"
                 }
             ],
             "targets": {
@@ -103,7 +98,7 @@
                             "navigation": {
                                 "Travel": {
                                     "detail": {
-                                        "route": "TravelObjectPage"
+                                        "route": "CustomPageViewPage"
                                     }
                                 }
                             },
@@ -111,31 +106,14 @@
                         }
                     }
                 },
-                "TravelObjectPage": {
+                "CustomPageViewPage": {
                     "type": "Component",
-                    "id": "TravelObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
+                    "id": "CustomPageView",
+                    "name": "sap.fe.core.fpm",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": false,
-                            "entitySet": "Travel",
-                            "navigation": {
-                                "to_Booking": {
-                                    "detail": {
-                                        "route": "BookingObjectPage"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "BookingObjectPage": {
-                    "type": "Component",
-                    "id": "BookingObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "Booking"
+                            "viewName": "sap.fe.cap.managetravels.ext.view.CustomPage",
+                            "entitySet": "Travel"
                         }
                     }
                 }

@@ -1,0 +1,41 @@
+<mvc:View
+	id="application-product"
+	height="100%"
+	controllerName="sap.fe.cap.managetravels.ext.controller.CustomPage"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:macros="sap.fe.macros"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Page>		
+		<content>		
+			<VBox class="sapUiTinyMargin">		
+				<Panel headerText="Form Element">
+					<Button text="Edit" press="onPress"/>
+					<f:Form>
+						<f:layout>
+							<f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4" labelCellsLarge="12" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<macros:FormElement metaPath="TotalPrice" id="formElementMacroID" label="Total Amount" />
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</Panel>
+				<l:HorizontalLayout id="macroTableContainer" allowWrapping="true" class="sapMSampleTileContainer">
+					<MessageStrip
+						showIcon="true"
+						type="Information"
+						text="Table Building Block"
+						class="sapUiTinyMargin"
+					/>
+					<macros:Table metaPath="to_Booking@com.sap.vocabularies.UI.v1.LineItem" id="macroTable" />
+				</l:HorizontalLayout>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

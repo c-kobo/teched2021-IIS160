@@ -75,6 +75,12 @@ annotate TravelService.BookingSupplement {
 };
 
 //Exercise 3.1: Add side effect on GoGreen property
+annotate TravelService.Travel with 
+@Common : {SideEffects #ConnectionID: {
+  $Type            : 'Common.SideEffectsType',
+  SourceEntities   : [to_Booking],
+  TargetProperties : ['TotalPrice']
+}};
 
 
 //Exercise 4.5: Add side effect on ConnectionID
