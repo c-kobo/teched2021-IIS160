@@ -33,7 +33,7 @@
 						text="Table Building Block"
 						class="sapUiTinyMargin"
 					/>
-					<macros:Table metaPath="to_Booking@com.sap.vocabularies.UI.v1.LineItem" id="macroTable" />
+					<macros:Table metaPath="to_Booking/@com.sap.vocabularies.UI.v1.LineItem" id="macroTable" />
 				</l:HorizontalLayout>
 			</VBox>
 		</content>

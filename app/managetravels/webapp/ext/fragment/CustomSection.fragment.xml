@@ -14,7 +14,7 @@
    defaultSpan='L12 M12 S12'>
    <l:content>
 	 <macros:Table 
-	   metaPath='to_Booking@com.sap.vocabularies.UI.v1.LineItem'
+	   metaPath='to_Booking/@com.sap.vocabularies.UI.v1.LineItem'
 	   id='bookingTable'/>
    </l:content>
   </l:Grid>
