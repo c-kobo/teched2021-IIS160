@@ -42,7 +42,7 @@
     "test": "jest --runInBand",
     "start:ts": "npm-run-all --parallel watch:ts watch-managetravels",
     "watch-managetravels": "cds watch --open managetravels/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
-    "watch:ts": "babel app/managetravels/src --out-dir app/managetravels/webapp --source-maps true --extensions \".ts\" --config-file ./.babelrc.json --copy-files --watch",
+    "watch:ts": "babel app/managetravels/src --out-dir app/managetravels/webapp --source-maps true --extensions \".ts,.js\" --config-file ./.babelrc.json --copy-files --watch",
     "build:ts": "babel app/managetravels/src --out-dir app/managetravels/webapp --source-maps true --extensions \".ts,.js\" --copy-files"
   },
   "cds": {
