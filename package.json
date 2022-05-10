@@ -14,10 +14,23 @@
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.96.0",
+    "@babel/cli": "^7.14.8",
+    "@babel/compat-data": "^7.14.7",
+    "@babel/core": "^7.14.8",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.5",
+    "@babel/plugin-transform-typescript": "^7.14.6",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-typescript": "^7.14.5",
+    "babel-preset-transform-ui5": "^7.0.5",
+    "@sapui5/ts-types-esm": "1.97.0",
+    "typescript": "^4.5.3",
     "chai": "^4.3.0",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
     "jest": "^27.4.4",
+    "npm-run-all": "^4.1.5",
     "qunit": "^2.9.3",
     "sqlite3": "^5.0.2"
   },
@@ -27,7 +40,10 @@
   "scripts": {
     "start": "cds run",
     "test": "jest --runInBand",
-    "watch-managetravels": "cds watch --open managetravels/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4"
+    "start:ts": "npm-run-all --parallel watch:ts watch-managetravels",
+    "watch-managetravels": "cds watch --open managetravels/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
+    "watch:ts": "babel app/managetravels/src --out-dir app/managetravels/webapp --source-maps true --extensions \".ts\" --config-file ./.babelrc.json --copy-files --watch",
+    "build:ts": "babel app/managetravels/src --out-dir app/managetravels/webapp --source-maps true --extensions \".ts,.js\" --copy-files"
   },
   "cds": {
     "requires": {
