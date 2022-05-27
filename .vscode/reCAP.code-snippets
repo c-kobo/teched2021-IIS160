@@ -1,42 +1,42 @@
 {
 	"GoGreen Side Effect":{
 		"scope": "cds",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["annotate TravelService.Travel with @Common : {SideEffects : {\n  \\$Type    : 'Common.SideEffectsType',\n  SourceProperties : [GoGreen],\n  TargetProperties : ['TotalPrice', 'GreenFee', 'TreesPlanted'],\n  TargetEntities : [to_Booking]\n}};\n"]
 	},
 	"ConnectionID Side Effect":{
 		"scope": "cds",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["annotate TravelService.Booking with \n@Common : {SideEffects #ConnectionID: {\n  \\$Type            : 'Common.SideEffectsType',\n  SourceProperties : [ConnectionID],\n  TargetProperties : ['to_Travel/TotalPrice']\n}};\n"]
 	},	
 	"Aggregation Capabilities":{
 		"scope": "cds",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["annotate TravelService.BookedFlights with @(\n  Aggregation.ApplySupported: {\n    \\$Type : 'Aggregation.ApplySupportedType',\n    Transformations : [\n        'aggregate',\n        'groupby'\n    ],\n    Rollup : #None,\n    GroupableProperties : [\n        to_Customer_CustomerID, AirlineID\n    ],\n    AggregatableProperties : [\n        {\n            \\$Type : 'Aggregation.AggregatablePropertyType',\n            Property : BookingUUID \n        },\n    ],\n  },\n  Analytics.AggregatedProperties : [{\n    Name : 'CountFlights',\n    AggregationMethod : 'countdistinct',\n    AggregatableProperty : BookingUUID,\n    ![@Common.Label] : 'Booked Flights per Airline',\n  }]);\n"]
 	},	
 	"Chart Annotation":{
 		"scope": "cds",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["annotate TravelService.BookedFlights with @(\n  UI : {\n    Chart          : {\n    \\$Type     : 'UI.ChartDefinitionType',\n    Title     : 'Total Bookings for Customer',\n    Description   : 'Chart Description',\n    ChartType     : #Column,\n    Measures    : [CountFlights],\n    Dimensions    : [to_Customer_CustomerID, AirlineID],\n    MeasureAttributes : [{\n      \\$Type : 'UI.ChartMeasureAttributeType',\n      Measure : CountFlights,\n      Role  : #Axis1\n    }],    \n    DimensionAttributes : [\n      {\n      \\$Type   : 'UI.ChartDimensionAttributeType',\n      Dimension : to_Customer_CustomerID,\n      Role  : #Category\n    },   \n    {\n      \\$Type   : 'UI.ChartDimensionAttributeType',\n      Dimension : AirlineID,\n      Role  : #Series\n    }\n    ]\n    }      \n  } \n);\n"]
 	},		
 	"Table Building Block": {
 		"scope": "xml",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["<core:FragmentDefinition\n  xmlns:core='sap.ui.core'\n  xmlns='sap.m'\n  xmlns:l='sap.ui.layout'\n  xmlns:macros='sap.fe.macros'\n>\n<VBox core:require=\"{handler: 'sap/fe/cap/managetravels/ext/fragment/CustomSection'}\">  \n  <MessageStrip\n    text='All bookings for travel {TravelID} got confirmed by the agency.'\n    showIcon='true'\n    class='sapUiSmallMarginBottom'>\n  </MessageStrip>   \n  <l:Grid hSpacing='1' containerQuery='true'\n   defaultSpan='L12 M12 S12'>\n   <l:content>\n     <macros:Table \n       metaPath='to_Booking/@com.sap.vocabularies.UI.v1.LineItem'\n       id='bookingTable'/>\n   </l:content>\n  </l:Grid>\n</VBox>\n</core:FragmentDefinition>"]
 	},
 	"Chart Building Block": {
 		"scope": "xml",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["  <macros:Chart\n    id=\"chartDefault\"\n    contextPath=\"/Travel/to_BookedFlights\"\n    metaPath=\"@com.sap.vocabularies.UI.v1.Chart\"\n    personalization=\"Type,Item\"\n    selectionMode=\"Single\"\n    selectionChange=\"handler.onChartSelectionChanged\">\n  </macros:Chart>"]
 	},
 	"Popover dependent": {
 		"scope": "xml",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["<l:dependents>\n   <core:Fragment fragmentName=\"sap.fe.cap.managetravels.ext.fragment.Popover\" type=\"XML\"/>\n</l:dependents>"]
 	},
 	"Event Handler": {
 		"scope": "javascript",
-		"prefix": "#UX Summit",
+		"prefix": "#reCAP",
 		"body": ["sap.ui.define([\"sap/ui/model/json/JSONModel\"], function (JSONModel) {\n  \"use strict\";\n\n  return {\n    onChartSelectionChanged: function (oEvent) {\n      if (oEvent.getParameter(\"selected\")) {\n        this.editFlow\n          .getView()\n          .setModel(\n            new JSONModel(oEvent.getParameter(\"data\")[0].data),\"popup\");\n\n\n        // get Popover from xml fragment dependents\n        this._oPopover = oEvent.getSource().getParent().getDependents()[0];\n        if (this._oPopover) {\n        // open popover at selected chart segment\n          this._oPopover.openBy(\n            oEvent.getParameter(\"data\")[0].target\n          );\n        }\n      }\n    },\n  };\n});\n"]
 	},
 	"Controller Extension": {
