@@ -6,24 +6,6 @@ using { sap.fe.cap.travel as my } from '../db/schema';
 
 annotate my.Travel {
 
-  TravelStatus @Common.ValueListWithFixedValues;
-
-  to_Agency @Common.ValueList: {
-    CollectionPath : 'TravelAgency',
-    Label : '',
-    Parameters : [
-      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Agency_AgencyID, ValueListProperty: 'AgencyID'},  // local data property is the foreign key
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Name'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Street'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'PostalCode'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'City'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'CountryCode_code'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'PhoneNumber'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'EMailAddress'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'WebAddress'}
-    ]
-  };
-
   to_Customer @Common.ValueList: {
     CollectionPath : 'Passenger',
     Label : 'Customer ID',
