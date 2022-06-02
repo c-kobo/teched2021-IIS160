@@ -18,7 +18,7 @@ entity Travel : managed {
   TotalPrice     : Decimal(16, 3) @readonly;
   CurrencyCode   : Currency;
   Description    : String(1024);
-  TravelStatus   : Association to TravelStatus  @readonly;
+  TravelStatus   : Association to TravelStatus  @readonly @Common.ValueListWithFixedValues;
   GoGreen        : Boolean default false;
   GreenFee       : Decimal(16, 3) @Core.Computed @readonly;
   TreesPlanted   : Integer @Core.Computed @readonly;  
