@@ -1,5 +1,5 @@
 TravelUUID;TravelID;to_Agency_AgencyID;to_Customer_CustomerID;BeginDate;EndDate;BookingFee;TotalPrice;CurrencyCode_code;Description;TravelStatus_code;createdBy;createdAt;LastChangedBy;LastChangedAt;GoGreen
-e87cd3a0331411ec959fd79bb4702f0b;1;070042;000553;2021-08-07;2022-06-05;20;2903;EUR;Vacation;O;Koller;2021-07-07T22:47:58Z;Henry;2021-07-07T07:34:43Z;false
+e87cd3a0331411ec959fd79bb4702f0b;1;070042;000553;2022-06-02;2022-06-21;20;2903;EUR;Vacation;O;Koller;2021-07-07T22:47:58Z;Henry;2021-07-07T07:34:43Z;false
 e87cfab8331411ec959fd79bb4702f0b;2;070043;000594;2022-06-01;2022-06-03;60;3716;EUR;Vacation to Mars;A;Babilon;2021-10-07T16:41:05Z;Sessler;2021-10-17T10:41:55Z;false
 e87cfad2331411ec959fd79bb4702f0b;3;070046;000387;2021-08-06;2021-08-07;20;1810;EUR;Business Trip to United States;A;Sisko;2021-07-12T08:30:49Z;Gueldenpfennig;2021-07-25T13:48:41Z;false
 e87cfad8331411ec959fd79bb4702f0b;4;070008;000004;2022-06-03;2022-06-05;120;13484.5;EUR;Vacation;O;Pan;2021-10-07T18:30:25Z;Fischmann;2021-10-21T05:47:32Z;false
