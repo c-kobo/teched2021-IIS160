@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Wed Jun 01 2022 10:42:24 GMT+0200 (Central European Summer Time)|
+|**Generation Date and Time**<br>Wed Jun 01 2023 10:42:24 GMT+0200 (Central European Summer Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.6.1|
 |**Generation Platform**<br>Visual Studio Code|

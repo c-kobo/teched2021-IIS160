@@ -85,6 +85,14 @@ init() {
   }})
 
 
+ this.on ('CANCEL', 'Booking', async (context, next) => {
+   // We need to fetch the Travel's UUID for the given Booking target
+   const { travel } = await SELECT.one `to_Travel_TravelUUID as travel` .from (context._target)
+   await next();
+   return this._update_totals4 (travel)
+  })
+
+
   /**
    * Update the Travel's TotalPrice when a Supplement's Price is modified.
    */

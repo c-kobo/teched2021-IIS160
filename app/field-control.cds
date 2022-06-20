@@ -48,12 +48,9 @@ annotate TravelService.Travel {
 }
 
 
-annotate TravelService.Booking with @UI.CreateHidden : to_Travel.TravelStatus.createDeleteHidden
-@Common : {SideEffects #FlightPrice: {
-  $Type            : 'Common.SideEffectsType',
-  SourceProperties : [FlightPrice],
-  TargetProperties : ['to_Travel/TotalPrice']
-}};
+
+
+annotate TravelService.Booking with @UI.CreateHidden : to_Travel.TravelStatus.createDeleteHidden;
 
 annotate TravelService.Booking {
 
@@ -76,5 +73,17 @@ annotate TravelService.BookingSupplement {
 
 //Exercise 3.1: Add side effect on GoGreen property
 
+annotate TravelService.Travel with @Common : { 
+   SideEffects  : {
+       $Type : 'Common.SideEffectsType',
+       SourceEntities : [
+           to_Booking
+       ],
+  SourceProperties : [GoGreen],       
+  TargetProperties : ['TotalPrice', 'GreenFee', 'TreesPlanted'],
+   },
+ };
+
 
 //Exercise 4.5: Add side effect on ConnectionID
+
