@@ -1,10 +1,12 @@
 sap.ui.define(["sap/fe/core/AppComponent"], function (AppComponent) {
-  'use strict';
-
-  return AppComponent.extend("sap.fe.cap.managetravels.Component", {
+  /**
+   * @namespace sap.fe.cap.managetravels
+   */
+  const Component = AppComponent.extend("sap.fe.cap.managetravels.Component", {
     metadata: {
       manifest: "json"
     }
   });
+  return Component;
 });
 //# sourceMappingURL=Component.js.map
