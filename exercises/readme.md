@@ -16,7 +16,7 @@ App Generation:
 - 1.108.0
 - add js code assist libs (adds @sapui5/ts-types)
 
-While generating: [show FPM Explorer]()
+While generating: [show FPM Explorer](https://ui5.sap.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction)
 
 Configure Page
 - show Main.view.xml and controller
@@ -332,6 +332,8 @@ For **Target Value** select **VIPCustomerBookings**.
 Drag column **BookedFlights** below **AirlinePicUrl**.
 
 Set criticality property **EligibleForPrime** via **BookedFlights** Property Pane
+
+Set label **Customer VIP Status**
 
 **Nav to chart annotation**
 
