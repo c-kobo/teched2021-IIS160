@@ -255,7 +255,7 @@ Switch to file **Main.view.xml**. Replace the code in **\<f:snappedContent\>** w
 </Panel>
 <Panel id='pn2' headerText="{i18n>FilterStatus}">
     <Text id='filterInfo1' text="{fbConditions>/filtersTextInfo}" class="sapUiTinyMargin" />
-</Pane
+</Panel>
 ```
 **Add handler function to main controller**
 
