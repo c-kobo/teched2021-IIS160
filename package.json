@@ -13,7 +13,7 @@
     "passport": "^0.4.1"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.96.0",
+    "@sap/ux-specification": "^1.102.9",
     "@babel/cli": "^7.14.8",
     "@babel/compat-data": "^7.14.7",
     "@babel/core": "^7.14.8",
